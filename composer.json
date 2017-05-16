@@ -1,0 +1,29 @@
+{
+    "name": "croudtech/bing-de-crapper-wrapper",
+    "description": "A Wrapper Around Bing.",
+    "authors": [
+        {
+            "name": "Rob Sills",
+            "email": "rob.sills@croud.co.uk"
+        }
+    ],
+    "require": {
+        "microsoft/bingads": "^0.11.5",
+        "league/csv": "^8.2",
+        "nesbot/carbon": "^1.22"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.7",
+        "larapack/dd": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "BingDeCrapperWrapper\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BingDeCrapperWrapper\\Tests\\": "tests/"
+        }
+    }
+}
