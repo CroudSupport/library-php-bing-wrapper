@@ -1,4 +1,6 @@
 <?php
+namespace BingDeCrapperWrapper\Reports;
+
 use Microsoft\BingAds\V11\Reporting\ReportRequest;
 
 /**
@@ -6,7 +8,7 @@ use Microsoft\BingAds\V11\Reporting\ReportRequest;
  *
  * @license Proprietary
  */
-interface ReportRequestContract
+interface ReportRequestBuilderContract
 {
     public function getReport() : ReportRequest;
 }

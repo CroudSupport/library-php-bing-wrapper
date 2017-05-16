@@ -19,8 +19,12 @@ class Client
      * @param string $developerToken
      * @param string $service
      */
-    public function __construct(string $userName, string $password, string $developerToken, string $service)
-    {
+    public function __construct(
+        string $userName,
+        string $password,
+        string $developerToken,
+        string $service
+    ) {
         $passwordAuthentication = new PasswordAuthentication();
         $passwordAuthentication->withUserName($userName);
         $passwordAuthentication->withPassword($password);

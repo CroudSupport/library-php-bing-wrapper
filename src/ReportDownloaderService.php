@@ -1,7 +1,7 @@
 <?php
-
 namespace BingDeCrapperWrapper;
 
+use BingDeCrapperWrapper\Reports\ReportRequestBuilder;
 use Exception;
 use League\Csv\Reader;
 use Microsoft\BingAds\V11\Reporting\PollGenerateReportRequest;
@@ -18,11 +18,14 @@ class ReportDownloaderService
 
     /**
      * @param Client $client
-     * @param ReportRequest $reportRequest
+     * @param ReportRequestBuilder $reportRequestBuilder
      * @return string
      */
-    public function getReportCsvString(Client $client, ReportRequest $reportRequest) {
-        $reportRequestId = $this->makeReportRequest($client, $reportRequest);
+    public function getReportCsvString(
+        Client $client,
+        ReportRequestBuilder $reportRequestBuilder
+    ) {
+        $reportRequestId = $this->makeReportRequest($client, $reportRequestBuilder->getReport());
 
         $reportUrl = $this->poll($client, $reportRequestId);
 
@@ -39,7 +42,7 @@ class ReportDownloaderService
         $encodedReport = new SoapVar(
             $reportRequest,
             SOAP_ENC_OBJECT,
-            'AccountPerformanceReportRequestBuilder', // todo ????
+            'AccountPerformanceReportRequestBuilder', // todo not sure what this does this may need to come from the report Builder
             $client->GetNamespace()
         );
 
