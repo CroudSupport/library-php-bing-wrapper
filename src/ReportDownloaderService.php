@@ -8,6 +8,7 @@ use Microsoft\BingAds\V11\Reporting\PollGenerateReportRequest;
 use Microsoft\BingAds\V11\Reporting\ReportRequest;
 use Microsoft\BingAds\V11\Reporting\ReportRequestStatusType;
 use Microsoft\BingAds\V11\Reporting\SubmitGenerateReportRequest;
+use ReflectionObject;
 use SoapVar;
 use ZipArchive;
 
@@ -42,7 +43,7 @@ class ReportDownloaderService
         $encodedReport = new SoapVar(
             $reportRequest,
             SOAP_ENC_OBJECT,
-            (new \ReflectionObject($reportRequest))->getName(),
+            (new ReflectionObject($reportRequest))->getShortName(),
             $client->getClient()->GetNamespace()
         );
 

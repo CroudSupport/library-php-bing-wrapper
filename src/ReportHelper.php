@@ -132,6 +132,6 @@ class ReportHelper
             }
         }
 
-        return $columns;
+        return array_values($columns);
     }
 }
