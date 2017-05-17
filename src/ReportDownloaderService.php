@@ -42,14 +42,14 @@ class ReportDownloaderService
         $encodedReport = new SoapVar(
             $reportRequest,
             SOAP_ENC_OBJECT,
-            'AccountPerformanceReportRequestBuilder', // todo not sure what this does this may need to come from the report Builder
-            $client->GetNamespace()
+            (new \ReflectionObject($reportRequest))->getName(),
+            $client->getClient->GetNamespace()
         );
 
         $request = new SubmitGenerateReportRequest();
         $request->ReportRequest = $encodedReport;
 
-        $response = $client->GetService()->SubmitGenerateReport($request);
+        $response = $client->getClient->GetService()->SubmitGenerateReport($request);
 
         return $response->ReportRequestId;
     }
@@ -118,10 +118,5 @@ class ReportDownloaderService
         }
 
         throw new Exception('Request has Timed Out');
-    }
-
-    public function parseCsv($csv)
-    {
-        return Reader::createFromString($csv);
     }
 }

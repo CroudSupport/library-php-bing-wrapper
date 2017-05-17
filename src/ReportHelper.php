@@ -66,7 +66,7 @@ class ReportHelper
         $reportBuilder = new KeywordPerformanceReport(
             $startDate,
             $endDate,
-            ReportAggregation::Summary,
+            ReportAggregation::Daily,
             $accountIds,
             $columns
         );
@@ -98,7 +98,7 @@ class ReportHelper
         $reportBuilder = new AdPerformanceReport(
             $startDate,
             $endDate,
-            ReportAggregation::Summary,
+            ReportAggregation::Daily,
             $accountIds,
             $columns
         );
