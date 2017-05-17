@@ -38,18 +38,18 @@ class ReportDownloaderService
      *
      * @return string
      */
-    public function makeReportRequest($client, ReportRequest $reportRequest) {
+    public function makeReportRequest(Client $client, ReportRequest $reportRequest) {
         $encodedReport = new SoapVar(
             $reportRequest,
             SOAP_ENC_OBJECT,
             (new \ReflectionObject($reportRequest))->getName(),
-            $client->getClient->GetNamespace()
+            $client->getClient()->GetNamespace()
         );
 
         $request = new SubmitGenerateReportRequest();
         $request->ReportRequest = $encodedReport;
 
-        $response = $client->getClient->GetService()->SubmitGenerateReport($request);
+        $response = $client->getClient()->GetService()->SubmitGenerateReport($request);
 
         return $response->ReportRequestId;
     }
