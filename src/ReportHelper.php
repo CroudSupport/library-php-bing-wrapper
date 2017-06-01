@@ -46,16 +46,18 @@ class ReportHelper
      * @param Client $client
      * @param DateTimeInterface $startDate
      * @param DateTimeInterface $endDate
-     * @param array $excludedColumns
      * @param \string[] ...$accountIds
      *
+     * @param string $downloadDestination
+     * @param array $excludedColumns
      * @return string
      */
-    public function getKeywordPerformanceReportCsvString(
+    public function downloadKeywordPerformanceReportCsv(
         Client $client,
         DateTimeInterface $startDate,
         DateTimeInterface $endDate,
         array $accountIds,
+        string $downloadDestination,
         array $excludedColumns = null
     ) {
         $columns = $this->getColumns(
@@ -71,23 +73,26 @@ class ReportHelper
             $columns
         );
 
-        return $this->reportDownloaderService->getReportCsvString($client, $reportBuilder);
+        return $this->reportDownloaderService
+            ->requestAndPollAndDownloadCsv($client, $reportBuilder, $downloadDestination);
     }
 
     /**
      * @param Client $client
      * @param DateTimeInterface $startDate
      * @param DateTimeInterface $endDate
-     * @param array $excludedColumns
      * @param \string[] ...$accountIds
+     * @param string $downloadDestination
+     * @param array $excludedColumns
      *
      * @return string
      */
-    public function getAdPerformanceReportCsvString(
+    public function downloadAdPerformanceReportCsv(
         Client $client,
         DateTimeInterface $startDate,
         DateTimeInterface $endDate,
         array $accountIds,
+        string $downloadDestination,
         array $excludedColumns
     ) {
         $columns = $this->getColumns(
@@ -103,7 +108,8 @@ class ReportHelper
             $columns
         );
 
-        return $this->reportDownloaderService->getReportCsvString($client, $reportBuilder);
+        return $this->reportDownloaderService
+            ->requestAndPollAndDownloadCsv($client, $reportBuilder, $downloadDestination);
     }
 
     /**

@@ -3,7 +3,6 @@ namespace BingDeCrapperWrapper;
 
 use BingDeCrapperWrapper\Reports\ReportRequestBuilder;
 use Exception;
-use League\Csv\Reader;
 use Microsoft\BingAds\V11\Reporting\PollGenerateReportRequest;
 use Microsoft\BingAds\V11\Reporting\ReportRequest;
 use Microsoft\BingAds\V11\Reporting\ReportRequestStatusType;
@@ -20,17 +19,19 @@ class ReportDownloaderService
     /**
      * @param Client $client
      * @param ReportRequestBuilder $reportRequestBuilder
+     * @param string $downloadDestination
      * @return string
      */
-    public function getReportCsvString(
+    public function requestAndPollAndDownloadCsv(
         Client $client,
-        ReportRequestBuilder $reportRequestBuilder
+        ReportRequestBuilder $reportRequestBuilder,
+        string $downloadDestination
     ) {
         $reportRequestId = $this->makeReportRequest($client, $reportRequestBuilder->getReport());
 
         $reportUrl = $this->poll($client, $reportRequestId);
 
-        return $this->downloadReport($reportUrl);
+        return $this->downloadReport($reportUrl, $downloadDestination);
     }
 
     /**
@@ -57,26 +58,28 @@ class ReportDownloaderService
 
     /**
      * @param $url
+     * @param $downloadDestination
      * @return string
      * @throws Exception
      */
-    public function downloadReport($url)
+    public function downloadReport($url, $downloadDestination)
     {
         $tmpFile = tempnam(sys_get_temp_dir(), 'bing_report');
+
         copy($url, $tmpFile);
 
         $zipArchive = new ZipArchive();
 
-        if($zipArchive->open($tmpFile) !== true) {
-            throw new Exception('Cannot open zip');
-        }
+        $wasExtracted = $zipArchive->extractTo($downloadDestination);
 
-        $reportContents = $zipArchive->getFromIndex(0);
+        if($wasExtracted !== true) {
+            throw new Exception('Cannot extract zip');
+        }
 
         $zipArchive->close();
         unlink($tmpFile);
 
-        return $reportContents;
+        return $downloadDestination;
     }
 
     /**
