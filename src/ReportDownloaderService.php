@@ -2,6 +2,7 @@
 namespace BingDeCrapperWrapper;
 
 use BingDeCrapperWrapper\Reports\ReportRequestBuilder;
+use Carbon\Carbon;
 use Exception;
 use Microsoft\BingAds\V11\Reporting\PollGenerateReportRequest;
 use Microsoft\BingAds\V11\Reporting\ReportRequest;
@@ -31,7 +32,7 @@ class ReportDownloaderService
 
         $reportUrl = $this->poll($client, $reportRequestId);
 
-        return $this->downloadReport($reportUrl, $downloadDestination);
+        return $this->downloadReport($reportUrl, $downloadDestination, $reportRequestId);
     }
 
     /**
@@ -62,7 +63,7 @@ class ReportDownloaderService
      * @return string
      * @throws Exception
      */
-    public function downloadReport($url, $downloadDestination)
+    public function downloadReport($url, $downloadDestination, $reportRequestId)
     {
         $tmpFile = tempnam(sys_get_temp_dir(), 'bing_report');
 
@@ -70,16 +71,29 @@ class ReportDownloaderService
 
         $zipArchive = new ZipArchive();
 
+        $wasOpened = $zipArchive->open($tmpFile);
+
+        if ($wasOpened !== true) {
+            throw new Exception('Cannot open zip');
+        }
+
         $wasExtracted = $zipArchive->extractTo($downloadDestination);
 
-        if($wasExtracted !== true) {
+        if ($wasExtracted !== true) {
             throw new Exception('Cannot extract zip');
         }
 
         $zipArchive->close();
         unlink($tmpFile);
 
-        return $downloadDestination;
+        $csvPath = $downloadDestination . '/' . Carbon::now()->format('Y-m-d') . '.csv';
+
+        rename(
+            $downloadDestination . '/' . $reportRequestId . '.csv',
+            $csvPath
+        );
+
+        return $csvPath;
     }
 
     /**
