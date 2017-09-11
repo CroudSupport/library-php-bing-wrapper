@@ -1,4 +1,4 @@
-# Deep Crawl Client
+# Bing Decrapper Wrapper
 
 Some helper classes arround the Bing API to make life alittle easier.
 
