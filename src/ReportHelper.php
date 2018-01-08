@@ -27,22 +27,6 @@ class ReportHelper
     }
 
     /**
-     * @param string $userName
-     * @param string $password
-     * @param string $developerToken
-     * @return Client
-     */
-    public function getReportingClient(string $userName, string $password, string $developerToken)
-    {
-        return new Client(
-            $userName,
-            $password,
-            $developerToken,
-            ServiceClientType::ReportingVersion11
-        );
-    }
-
-    /**
      * @param Client $client
      * @param DateTimeInterface $startDate
      * @param DateTimeInterface $endDate
