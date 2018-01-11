@@ -1,4 +1,4 @@
-# Bing Decrapper Wrapper
+# Bing Wrapper
 
 Some helper classes arround the Bing API to make life alittle easier.
 
