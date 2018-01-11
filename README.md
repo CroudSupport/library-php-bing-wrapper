@@ -1,4 +1,4 @@
-# Bing Decrapper Wrapper
+# Bing Wrapper
 
 Some helper classes arround the Bing API to make life alittle easier.
 
@@ -12,7 +12,7 @@ This is just a simplifeid way of retreiveing a bing client
 
 ```php
 
-$bingReportHelper = new \BingDeCrapperWrapper\ReportHelper\ReportHelper();
+$bingReportHelper = new \BingWrapper\ReportHelper\ReportHelper();
 
 // use
 $client = $this->bingReportHelper->getReportingClient(
@@ -24,7 +24,7 @@ $client = $this->bingReportHelper->getReportingClient(
 
 #### downloadKeywordPerformanceReportCsv
 ```php
-$bingReportHelper = new \BingDeCrapperWrapper\ReportHelper\ReportHelper();
+$bingReportHelper = new \BingWrapper\ReportHelper\ReportHelper();
 
 $bingAccountId = 123;
 $startDate = carbon::now()->subDay();
@@ -42,7 +42,7 @@ return $this->bingReportHelper->downloadKeywordPerformanceReportCsv(
 
 #### downloadAdPerformanceReportCsv
 ```php
-$bingReportHelper = new \BingDeCrapperWrapper\ReportHelper\ReportHelper();
+$bingReportHelper = new \BingWrapper\ReportHelper\ReportHelper();
 
 $bingAccountId = 123;
 $startDate = carbon::now()->subDay();

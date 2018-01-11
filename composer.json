@@ -1,5 +1,5 @@
 {
-    "name": "croudtech/bing-de-crapper-wrapper",
+    "name": "croudtech/bing-wrapper",
     "description": "A Wrapper Around Bing.",
     "authors": [
         {
@@ -18,12 +18,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BingDeCrapperWrapper\\": "src/"
+            "BingWrapper\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BingDeCrapperWrapper\\Tests\\": "tests/"
+            "BingWrapper\\Tests\\": "tests/"
         }
     }
 }

@@ -1,8 +1,8 @@
 <?php
-namespace BingDeCrapperWrapper;
+namespace BingWrapper;
 
-use BingDeCrapperWrapper\Reports\AdPerformanceReport;
-use BingDeCrapperWrapper\Reports\KeywordPerformanceReport;
+use BingWrapper\Reports\AdPerformanceReport;
+use BingWrapper\Reports\KeywordPerformanceReport;
 use DateTimeInterface;
 use Microsoft\BingAds\Auth\ServiceClientType;
 use Microsoft\BingAds\V11\Reporting\AdPerformanceReportColumn;

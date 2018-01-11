@@ -1,5 +1,5 @@
 <?php
-namespace BingDeCrapperWrapper\Reports;
+namespace BingWrapper\Reports;
 
 use Microsoft\BingAds\V11\Reporting\ReportRequest;
 

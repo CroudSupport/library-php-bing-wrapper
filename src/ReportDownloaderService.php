@@ -1,7 +1,7 @@
 <?php
-namespace BingDeCrapperWrapper;
+namespace BingWrapper;
 
-use BingDeCrapperWrapper\Reports\ReportRequestBuilder;
+use BingWrapper\Reports\ReportRequestBuilder;
 use Carbon\Carbon;
 use Exception;
 use Microsoft\BingAds\V11\Reporting\PollGenerateReportRequest;

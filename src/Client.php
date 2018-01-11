@@ -1,5 +1,5 @@
 <?php
-namespace BingDeCrapperWrapper;
+namespace BingWrapper;
 
 use Microsoft\BingAds\Auth\ServiceClient;
 use Microsoft\BingAds\Auth\ApiEnvironment;
