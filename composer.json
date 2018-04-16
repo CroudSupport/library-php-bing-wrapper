@@ -1,10 +1,10 @@
 {
-    "name": "croudtech/bing-wrapper",
+    "name": "croudtech/bingads-wrapper",
     "description": "A Wrapper Around Bing.",
     "authors": [
         {
-            "name": "Rob Sills",
-            "email": "rob.sills@croud.co.uk"
+            "name": "Jim Robinson",
+            "email": "jim.robinson@croud.co.uk"
         }
     ],
     "require": {
